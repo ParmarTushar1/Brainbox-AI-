@@ -10,6 +10,7 @@ import OtpVerify from './src/screens/OtpVerify';
 import WelcomeHome from './src/screens/WelcomeHome';
 import LoginAccount from './src/screens/LoginAccount';
 import ForgetPassword from './src/screens/ForgetPassword';
+import DrawerNavigator from './src/screens/DrawerNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -90,6 +91,20 @@ const App = () => {
             presentation: 'modal', 
             animation: 'slide_from_right'
           }} 
+        />
+        <Stack.Screen 
+          name="BrainboxHome" 
+          component={DrawerNavigator} 
+          options={{ 
+            headerShown: false,
+            presentation: 'modal', 
+            animation: 'slide_from_right'
+          }} 
+        />
+        <Stack.Screen 
+        name="MainApp" 
+        component={DrawerNavigator} 
+        options={{ headerShown: false }} 
         />
       </Stack.Navigator>
     </NavigationContainer>

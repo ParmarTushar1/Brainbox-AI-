@@ -17,6 +17,7 @@ import EyeOffIcon from '../assets/images/Svg/Eye Off Icon.svg';
 import PrimaryButton from '../components/PrimaryButton';
 import PrimaryBoxButton from '../components/PrimaryBoxButton';
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
+import EyeOnIcon from '../assets/images/Svg/Eye-On.svg';
 
 const LoginAccount = () => {
   const navigation = useNavigation();
@@ -115,12 +116,14 @@ const LoginAccount = () => {
           errorText={errors.password}
           leftSvgIcon={<LockIcon width={20} height={20} />}
           rightSvgIcon={
-            success.password ? (
-              <CheckIcon width={18} height={18} />
-            ) : (
-              <EyeOffIcon width={20} height={20} />
-            )
-          }
+          success.password ? (
+            <CheckIcon width={18} height={18} />
+          ) : showPassword ? (
+            <EyeOnIcon width={20} height={20} />
+          ) : (
+            <EyeOffIcon width={20} height={20} />
+          )
+        }
           onClickRightIcon={() => setShowPassword(!showPassword)}
           successText={
             success.password && (

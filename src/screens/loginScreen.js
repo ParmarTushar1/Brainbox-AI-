@@ -19,6 +19,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import PrimaryBoxButton from '../components/PrimaryBoxButton';
 import BrainBoxScrollContainer from '../components/BrainBoxScrollContainer';
 import { useNavigation } from '@react-navigation/native';
+import EyeOnIcon from '../assets/images/Svg/Eye-On.svg';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -104,7 +105,13 @@ const LoginScreen = () => {
             secureTextEntry={!showPassword}
             errorText={errors.password}
             leftSvgIcon={<LockIcon width={20} height={20} />}
-            rightSvgIcon={<EyeOffIcon width={20} height={20} />}
+            rightSvgIcon={
+            showPassword ? (
+              <EyeOnIcon width={20} height={20} />
+            ) : (
+              <EyeOffIcon width={20} height={20} />
+            )
+            }
             onClickRightIcon={() => setShowPassword(!showPassword)}
           />
 

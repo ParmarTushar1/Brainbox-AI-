@@ -9,11 +9,13 @@ import Rectangle_3 from '../assets/images/Svg/Rectangle_3';
 import LeftChevron from '../assets/images/Svg/Left-chevron.svg';
 import RightChevron from '../assets/images/Svg/right-chevron.svg';
 import BrainboxColor from '../utils/Colors';
+import { SCREEN_HEIGHT } from '../utils/responsive';
 
 const { width } = Dimensions.get('window');
 
 const Splash_two = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [swipeCount, setSwipeCount] = useState(0);
   const carouselRef = useRef(null);
   const navigation = useNavigation();
 
@@ -37,6 +39,7 @@ const Splash_two = () => {
   const handleDotPress = (index) => {
     carouselRef.current?.scrollTo({ index });
     setCurrentIndex(index);
+    setSwipeCount(0);
   };
 
   const handleRightPress = () => {
@@ -44,6 +47,15 @@ const Splash_two = () => {
       const nextIndex = currentIndex + 1;
       carouselRef.current?.scrollTo({ index: nextIndex });
       setCurrentIndex(nextIndex);
+      setSwipeCount(0);
+    } else {
+      setSwipeCount((prev) => {
+        const newCount = prev + 1;
+        if (newCount >= 1) {
+          navigation.navigate('WelcomeLogin');
+        }
+        return newCount;
+      });
     }
   };
 
@@ -52,6 +64,7 @@ const Splash_two = () => {
       const prevIndex = currentIndex - 1;
       carouselRef.current?.scrollTo({ index: prevIndex });
       setCurrentIndex(prevIndex);
+      setSwipeCount(0);
     }
   };
 
@@ -74,15 +87,29 @@ const Splash_two = () => {
         <Carousel
           ref={carouselRef}
           width={width}
-          height={500}
+          height={480}
           data={rectangles}
           loop={false}
-          style={{ marginTop: 100 }}
-          scrollAnimationDuration={500}
-          onSnapToItem={(index) => setCurrentIndex(index)}
+          style={{ marginTop: SCREEN_HEIGHT * 0.1}}
+          scrollAnimationDuration={600}
+          onSnapToItem={(index) => {
+            if (currentIndex === rectangles.length - 1 && index === rectangles.length - 1) {
+              // Swipe attempt beyond last slide
+              setSwipeCount((prev) => {
+                const newCount = prev + 1;
+                if (newCount >= 1) {
+                  navigation.navigate('WelcomeLogin');
+                }
+                return newCount;
+              });
+            } else {
+              setSwipeCount(0); // Reset if user navigates properly
+            }
+            setCurrentIndex(index);
+          }}
           renderItem={({ item: Rectangle }) => (
             <View style={styles.imageContainer}>
-              <Rectangle width={362} height={455} />
+              <Rectangle width={340} height={466} />
             </View>
           )}
           panGestureHandlerProps={{
@@ -114,7 +141,7 @@ const Splash_two = () => {
           </Text>
         </View>
 
-        {/* ✅ SVG Navigation Buttons */}
+        {/* Navigation Buttons */}
         <View style={styles.navContainer}>
           <TouchableOpacity
             style={styles.navButton}
@@ -133,12 +160,12 @@ const Splash_two = () => {
           <TouchableOpacity
             style={styles.navButton}
             onPress={handleRightPress}
-            disabled={currentIndex === rectangles.length - 1}
+            disabled={false}
           >
             <LeftChevron
               width={20}
               height={20}
-              fill={currentIndex === rectangles.length - 1 ? BrainboxColor.gray  : BrainboxColor.secondary}
+              fill={currentIndex === rectangles.length - 1 ? BrainboxColor.secondary : BrainboxColor.secondary}
             />
           </TouchableOpacity>
         </View>
@@ -170,7 +197,6 @@ const styles = StyleSheet.create({
   dotsContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 12,
   },
   dot: {
     width: 10,
@@ -181,23 +207,22 @@ const styles = StyleSheet.create({
   },
   activeDot: {
     backgroundColor: BrainboxColor.secondary,
-    width: 12,
-    height: 12,
+    width: 10,
+    height: 10,
   },
   headingText: {
     fontWeight: '800',
     fontFamily: 'ExtraBold',
     fontSize: 33.5,
     color: BrainboxColor.secondary,
-    marginTop: 15,
-    textAlign: 'center',
+    marginTop: SCREEN_HEIGHT * 0.02,
+    textAlign: 'center', 
   },
   headingTextv1: {
     fontWeight: '600',
     fontFamily: 'SemiBold',
     fontSize: 16.5,
     color: BrainboxColor.Graysteel,
-    marginTop: 15,
     textAlign: 'center',
   },
   navContainer: {
@@ -211,7 +236,7 @@ const styles = StyleSheet.create({
     width: 140,
     height: 50,
     alignSelf: 'center',
-    marginTop: 25,
+    marginTop: SCREEN_HEIGHT * 0.05,
   },
   navButton: {
     paddingHorizontal: 6,

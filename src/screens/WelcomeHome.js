@@ -1,14 +1,16 @@
 import React, { useCallback } from 'react';
 import { BackHandler, StyleSheet, Text, View } from 'react-native';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainboxColor from '../utils/Colors';
 import Logo from '../assets/images/Svg/Logo.svg';
-import { hp, SCREEN_HEIGHT, wp } from '../utils/responsive';
+import { hp, wp } from '../utils/responsive';
 import PrimaryButton from '../components/PrimaryButton';
 
 const WelcomeHome = () => {
+  const navigation = useNavigation();
+
   // Disable back button
   useFocusEffect(
     useCallback(() => {
@@ -36,7 +38,7 @@ const WelcomeHome = () => {
       <View style={styles.bottomButtonContainer}>
         <PrimaryButton
           label="Get started"
-          onPress={() => {}}
+          onPress={() => navigation.navigate('BrainboxHome')}
           size="medium"
         />
       </View>
