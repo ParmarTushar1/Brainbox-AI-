@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     width: 140,
     height: 50,
     alignSelf: 'center',
-    marginTop: SCREEN_HEIGHT * 0.05,
+    marginTop: SCREEN_HEIGHT * 0.03,
   },
   navButton: {
     paddingHorizontal: 6,

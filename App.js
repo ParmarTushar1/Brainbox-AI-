@@ -11,6 +11,7 @@ import WelcomeHome from './src/screens/WelcomeHome';
 import LoginAccount from './src/screens/LoginAccount';
 import ForgetPassword from './src/screens/ForgetPassword';
 import DrawerNavigator from './src/screens/DrawerNavigator';
+import ResetPassword from './src/screens/ResetPassword';
 
 const Stack = createNativeStackNavigator();
 
@@ -105,6 +106,15 @@ const App = () => {
         name="MainApp" 
         component={DrawerNavigator} 
         options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="ResetPassword" 
+          component={ResetPassword} 
+          options={{ 
+            headerShown: false,
+            presentation: 'modal', 
+            animation: 'slide_from_right'
+          }} 
         />
       </Stack.Navigator>
     </NavigationContainer>

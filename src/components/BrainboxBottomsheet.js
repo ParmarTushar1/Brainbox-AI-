@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -36,6 +36,15 @@ const BrainboxBottomsheet = ({
 }) => {
   const { colors } = useTheme();
   const slideAnim = useRef(new Animated.Value(0)).current;
+  const [isMounted, setIsMounted] = useState(visible);
+
+  const animateIn = () => {
+    Animated.timing(slideAnim, {
+      toValue: 1,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+  };
 
   const animateOut = (callback) => {
     Animated.timing(slideAnim, {
@@ -44,6 +53,7 @@ const BrainboxBottomsheet = ({
       useNativeDriver: true,
     }).start(() => {
       callback?.();
+      setIsMounted(false);
     });
   };
 
@@ -57,15 +67,15 @@ const BrainboxBottomsheet = ({
 
   useEffect(() => {
     if (visible) {
-      Animated.timing(slideAnim, {
-        toValue: 1,
-        duration: 400,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      slideAnim.setValue(0);
+      setIsMounted(true);
+      slideAnim.setValue(0); // reset before animating
+      animateIn();
+    } else if (isMounted) {
+      animateOut();
     }
   }, [visible]);
+
+  if (!isMounted) return null;
 
   const translateY = slideAnim.interpolate({
     inputRange: [0, 1],
@@ -105,7 +115,7 @@ const BrainboxBottomsheet = ({
 
   return (
     <BrainboxModal
-      visible={visible}
+      visible={isMounted}
       transparent
       onRequestClose={onRequestClose}
       onDismiss={onDismiss}
@@ -134,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   bottomSheet: {
-    backgroundColor:BrainboxColor.Onyx,
+    backgroundColor: BrainboxColor.Onyx,
     borderRadius: 20,
     paddingBottom: Platform.OS === 'ios' ? 32 : 16,
     overflow: 'hidden',

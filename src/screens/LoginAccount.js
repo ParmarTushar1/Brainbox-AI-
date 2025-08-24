@@ -145,7 +145,7 @@ const LoginAccount = () => {
 
         <View style={styles.signupContainer}>
           <Text style={styles.signupText}>Create New Account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
+          <TouchableOpacity onPress={() => navigation.navigate('ResetPassword')}>
             <Text style={styles.signupLink}>Sign up</Text>
           </TouchableOpacity>
         </View>
