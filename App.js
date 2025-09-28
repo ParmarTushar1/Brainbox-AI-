@@ -12,6 +12,8 @@ import LoginAccount from './src/screens/LoginAccount';
 import ForgetPassword from './src/screens/ForgetPassword';
 import DrawerNavigator from './src/screens/DrawerNavigator';
 import ResetPassword from './src/screens/ResetPassword';
+import ChatInputBar from './src/screens/ChatInputBar';
+import UserProfile from './src/components/UserProfile';
 
 const Stack = createNativeStackNavigator();
 
@@ -115,6 +117,16 @@ const App = () => {
             presentation: 'modal', 
             animation: 'slide_from_right'
           }} 
+        />
+        <Stack.Screen 
+        name="ChatInputBar" 
+        component={ChatInputBar} 
+        options={{ headerShown: false }} 
+        />
+        <Stack.Screen 
+        name="UserProfile" 
+        component={UserProfile} 
+        options={{ headerShown: false }} 
         />
       </Stack.Navigator>
     </NavigationContainer>

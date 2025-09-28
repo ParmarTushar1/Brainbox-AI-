@@ -1,8 +1,7 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Pressable } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Pressable, Animated, Easing } from 'react-native';
 import { DrawerContentScrollView } from '@react-navigation/drawer';
 
-// Import SVGs
 import LogoIcon from '../assets/images/Svg/Logo.svg';
 import CrossIcon from '../assets/images/Svg/cross.svg';
 import EditIcon from '../assets/images/Svg/edit-svgrepo-com.svg';
@@ -12,19 +11,41 @@ import UserIcon from '../assets/images/Svg/Ellipse_user.svg';
 import { SCREEN_HEIGHT } from '../utils/responsive';
 
 const CustomDrawerContent = (props) => {
+  const spinValue = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // Smooth infinite rotation
+    Animated.loop(
+      Animated.timing(spinValue, {
+        toValue: 1,
+        duration: 4000,       // 4 seconds for one full rotation
+        easing: Easing.linear, // linear easing for smooth rotation
+        useNativeDriver: true,
+      })
+    ).start();
+  }, []);
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
   return (
     <DrawerContentScrollView {...props} contentContainerStyle={styles.container}>
-      {/* Header with Logo and Close */}
+      {/* Header with spinning Logo */}
       <View style={styles.header}>
-        <LogoIcon width={65} height={65} />
-        <TouchableOpacity onPress={() => props.navigation.closeDrawer()}>
+        <Animated.View style={{ transform: [{ rotate: spin }] }}>
+          <LogoIcon width={65} height={65} />
+        </Animated.View>
+
+        <TouchableOpacity onPress={() => props.navigation.closeDrawer()} style={styles.crossButton}>
           <CrossIcon width={25} height={25} />
         </TouchableOpacity>
       </View>
 
       {/* Drawer Items */}
       <View style={styles.menu}>
-        <TouchableOpacity style={styles.menuItem} onPress={() => props.navigation.navigate('NewChat')}>
+        <TouchableOpacity style={styles.menuItem} onPress={() => props.navigation.closeDrawer()}>
           <EditIcon width={20} height={20} />
           <Text style={styles.menuText}>New Chat</Text>
         </TouchableOpacity>
@@ -46,14 +67,16 @@ const CustomDrawerContent = (props) => {
 
       {/* Footer */}
       <View style={styles.footer}>
-      <Pressable onPress={() => props.navigation.navigate('Profile')} style={styles.profileRow}>
-      <UserIcon width={50} height={50} />
-      <View style={styles.profileInfo}>
-      <Text style={styles.username}>Tushar Parmar</Text>
-      <Text style={styles.plan}>Free</Text>
+        <Pressable onPress={() => props.navigation.navigate('Profile')} style={styles.profileRow}>
+          <View style={styles.userIconContainer}>
+            <UserIcon width={50} height={50} />
+          </View>
+          <View style={styles.profileInfo}>
+            <Text style={styles.username}>Tushar Parmar</Text>
+            <Text style={styles.plan}>Free</Text>
+          </View>
+        </Pressable>
       </View>
-      </Pressable>
-</View>
     </DrawerContentScrollView>
   );
 };
@@ -70,6 +93,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
   },
+  crossButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
   menu: {
     flex: 1,
   },
@@ -83,16 +111,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
   },
-    menuTextv1: {
+  menuTextv1: {
     color: '#fff',
     fontSize: 16,
     marginLeft: 10,
-    marginTop: SCREEN_HEIGHT * 0.05, 
+    marginTop: SCREEN_HEIGHT * 0.05,
   },
   footer: {
     borderTopWidth: 1,
     borderTopColor: '#333',
     paddingTop: 16,
+  },
+  profileRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  userIconContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+  profileInfo: {
+    flexDirection: 'column',
   },
   username: {
     color: '#fff',
@@ -101,18 +141,6 @@ const styles = StyleSheet.create({
   plan: {
     color: '#888',
   },
-  profileImage: {
-  marginBottom: 10,
-  alignSelf: 'flex-start',
-  },
-  profileRow: {
-  flexDirection: 'row',
-  alignItems: 'center',
-  gap: 12, 
-  },
-  profileInfo: {
-  flexDirection: 'column',
-  },
-  });
+});
 
 export default CustomDrawerContent;

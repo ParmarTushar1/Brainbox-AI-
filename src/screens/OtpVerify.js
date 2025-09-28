@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainBoxOtp from '../components/BrainBoxOtp';
@@ -11,7 +11,7 @@ import BrainboxBottomsheet from '../components/BrainboxBottomsheet';
 import PrimaryButton from '../components/PrimaryButton';
 
 const OtpVerify = () => {
-  const [sheetVisible, setSheetVisible] = useState(true);
+  const [sheetVisible, setSheetVisible] = useState(false);
   const [otp, setOtp] = useState('');
   const [timer, setTimer] = useState(60);
   const navigation = useNavigation();
@@ -49,6 +49,15 @@ const OtpVerify = () => {
       navigation.navigate('WelcomeHome');
     }
   }, [otp]);
+
+   useFocusEffect(
+  useCallback(() => {
+    setSheetVisible(true); 
+    return () => {
+      setSheetVisible(false);
+    };
+  }, [])
+);
 
   return (
     <BrainboxContainer

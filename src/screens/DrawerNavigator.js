@@ -1,14 +1,14 @@
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import BrainboxHome from '../screens/BrainboxHome';
-import CustomDrawerContent from '../components/CustomDrawerContent'; // ✅ import it
+import CustomDrawerContent from '../components/CustomDrawerContent'; 
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerContent {...props} />} // ✅ use it
+      drawerContent={(props) => <CustomDrawerContent {...props} />} 
       screenOptions={{
         headerShown: false,
         drawerActiveTintColor: '#fff',
