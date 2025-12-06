@@ -11,7 +11,7 @@ import {
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainboxColor from '../utils/Colors';
 import BrainBoxHeader from '../components/BrainBoxHeader';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, DrawerActions } from '@react-navigation/native';
 import DrawerMenuIcon from '../assets/images/Svg/drawer-app-menu.svg';
 
 // Action icons
@@ -43,7 +43,7 @@ const BrainboxHome = () => {
 
     const aiMsg = {
       id: (Date.now() + 1).toString(),
-      text: `🤖 You asked: "${question}". Here’s Brainbox’s smart reply!`,
+      text: `🤖 You asked: "${question}". Here's Brainbox's smart reply!`,
       sender: 'ai',
     };
 
@@ -82,8 +82,16 @@ const BrainboxHome = () => {
   );
 
   const handleOpenDrawer = () => {
-  navigation.goBack();
-};
+    try {
+      navigation.dispatch(DrawerActions.openDrawer());
+    } catch (error) {
+      console.warn('Error opening drawer:', error);
+      // Fallback: try direct method
+      if (navigation.openDrawer) {
+        navigation.openDrawer();
+      }
+    }
+  };
 
   return (
     <BrainboxContainer
