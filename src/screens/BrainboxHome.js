@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import {
   Text,
   View,
@@ -6,11 +6,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainBoxHeader from '../components/BrainBoxHeader';
 import commonStyles from '../utils/commonStyles';
-import { useNavigation, DrawerActions } from '@react-navigation/native';
+import { useNavigation, DrawerActions, useFocusEffect } from '@react-navigation/native';
 import DrawerMenuIcon from '../assets/images/Svg/drawer-app-menu.svg';
 
 // Action icons
@@ -28,6 +29,18 @@ const BrainboxHome = () => {
   const [question, setQuestion] = useState('');
   const [messages, setMessages] = useState([]);
   const flatListRef = useRef(null);
+
+  // Handle hardware back button - exit app when pressed
+  useFocusEffect(
+    useCallback(() => {
+      const onBackPress = () => {
+        BackHandler.exitApp();
+        return true; // Prevent default behavior
+      };
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+      return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [])
+  );
 
 
   const handleAskQuestion = () => {
