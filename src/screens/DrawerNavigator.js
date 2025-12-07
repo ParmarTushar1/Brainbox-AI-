@@ -2,7 +2,8 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Platform } from 'react-native';
 import BrainboxHome from '../screens/BrainboxHome';
-import CustomDrawerContent from '../components/CustomDrawerContent'; 
+import CustomDrawerContent from '../components/CustomDrawerContent';
+import BrainboxColor from '../utils/Colors'; 
 
 const Drawer = createDrawerNavigator();
 
@@ -13,16 +14,16 @@ const DrawerNavigator = () => {
       screenOptions={{
         headerShown: false,
         drawerType: 'front',
-        drawerActiveTintColor: '#fff',
-        drawerInactiveTintColor: '#ccc',
+        drawerActiveTintColor: BrainboxColor.secondary,
+        drawerInactiveTintColor: BrainboxColor.LightGray,
         drawerStyle: {
-          backgroundColor: '#121212',
+          backgroundColor: BrainboxColor.DarkGray5,
           width: 280,
         },
         sceneContainerStyle: {
-          backgroundColor: '#000',
+          backgroundColor: BrainboxColor.Black,
         },
-        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        overlayColor: 'rgba(0, 0, 0, 0.5)', // Keep rgba for overlay transparency
         swipeEnabled: true,
         gestureHandlerProps: {
           enableTrackpadTwoFingerGesture: true,

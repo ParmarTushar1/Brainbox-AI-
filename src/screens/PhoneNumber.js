@@ -1,5 +1,4 @@
 import {
-  StyleSheet,
   Text,
   View,
   Platform,
@@ -9,13 +8,12 @@ import {
 import React, { useState, useRef } from 'react';
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainBoxHeader from '../components/BrainBoxHeader';
-import BrainboxColor from '../utils/Colors';
 import { useNavigation } from '@react-navigation/native';
-import { hp } from '../utils/responsive';
 import BrainBoxInput from '../components/BrainBoxInput';
 import Phone from '../assets/images/Svg/Phone.svg';
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
 import PrimaryButton from '../components/PrimaryButton';
+import commonStyles from '../utils/commonStyles';
 
 const PhoneNumber = () => {
   const navigation = useNavigation();
@@ -75,21 +73,21 @@ const PhoneNumber = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.wrapper}>
+      <View style={commonStyles.wrapper}>
         <BrainboxContainer
           statusBarColor="transparent"
           statusBarStyle="light-content"
           statusBarHidden={false}
-          style={styles.screen}
+          style={commonStyles.screen}
         >
           <BrainBoxHeader showMenu={false} backAction={handleBackPress} />
 
-          <View style={styles.headerContainer}>
-            <Text style={styles.titleLineOne}>Enter Your Phone</Text>
-            <Text style={styles.titleLineTwo}>Number</Text>
+          <View style={commonStyles.headerContainer}>
+            <Text style={commonStyles.titleLineOne}>Enter Your Phone</Text>
+            <Text style={commonStyles.titleLineTwo}>Number</Text>
           </View>
 
-          <View style={styles.inputContainer}>
+          <View style={commonStyles.inputContainerWithGap}>
             <BrainBoxInput
               ref={inputRef}
               placeholder="Phone Number"
@@ -102,8 +100,8 @@ const PhoneNumber = () => {
               editable={phone.length < 10}
               rightSvgIcon={success && <CheckIcon width={18} height={18} />}
               successText = {success && (
-              <View style={styles.successRow}>
-                <Text style={styles.successText}>
+              <View style={commonStyles.successRow}>
+                <Text style={commonStyles.successTextLime}>
                   Phone number verified successfully!
                 </Text>
               </View>
@@ -122,43 +120,3 @@ const PhoneNumber = () => {
 };
 
 export default PhoneNumber;
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-  screen: {
-    backgroundColor: BrainboxColor.Black,
-    flex: 1,
-  },
-  headerContainer: {
-    marginTop: hp(2),
-    paddingHorizontal: 20,
-  },
-  titleLineOne: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  titleLineTwo: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  inputContainer: {
-    paddingHorizontal: 20,
-    marginTop: hp(2),
-    gap: 10,
-  },
-  successRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginTop: 4,
-  },
-  successText: {
-    color: 'limegreen',
-    fontSize: 14,
-    fontWeight: '500',
-  },
-});

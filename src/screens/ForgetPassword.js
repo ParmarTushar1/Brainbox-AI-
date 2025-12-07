@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainboxColor from '../utils/Colors';
 import BrainBoxHeader from '../components/BrainBoxHeader';
 import { useNavigation } from '@react-navigation/native';
-import { hp, SCREEN_HEIGHT } from '../utils/responsive';
+import { SCREEN_HEIGHT } from '../utils/responsive';
 import EmailIcon from '../assets/images/Svg/Email.svg';
 import PhoneIcon from '../assets/images/Svg/Vector.svg';
 import PrimaryButton from '../components/PrimaryButton';
+import commonStyles from '../utils/commonStyles';
 
 const ForgetPassword = () => {
   const navigation = useNavigation();
@@ -32,46 +33,46 @@ const ForgetPassword = () => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={styles.screen}
+      style={commonStyles.screen}
     >
       <BrainBoxHeader showMenu={false} backAction={handleSignInPress} />
 
-      <View style={styles.headerContainer}>
-        <Text style={styles.titleLineOne}>Forget Password</Text>
-        <Text style={styles.headingTextv1}>
+      <View style={commonStyles.headerContainer}>
+        <Text style={commonStyles.titleLineOne}>Forget Password</Text>
+        <Text style={commonStyles.headingTextv1Graysteel}>
           Select which contact details should we use to reset your password
         </Text>
       </View>
 
-      <View style={styles.selectionContainer}>
+      <View style={commonStyles.selectionContainer}>
         <TouchableOpacity
           style={[
-            styles.card,
-            selectedOption === 'email' && styles.cardSelected,
+            commonStyles.card,
+            selectedOption === 'email' && commonStyles.cardSelected,
           ]}
           onPress={() => setSelectedOption('email')}
         >
-          <View style={styles.iconTextRow}>
+          <View style={commonStyles.iconTextRow}>
             <EmailIcon width={24} height={24} />
-            <View style={styles.textContainer}>
-              <Text style={styles.cardTitle}>Email</Text>
-              <Text style={styles.cardSubtitle}>Code sent to your email</Text>
+            <View style={commonStyles.textContainer}>
+              <Text style={commonStyles.cardTitle}>Email</Text>
+              <Text style={commonStyles.cardSubtitle}>Code sent to your email</Text>
             </View>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={[
-            styles.card,
-            selectedOption === 'phone' && styles.cardSelected,
+            commonStyles.card,
+            selectedOption === 'phone' && commonStyles.cardSelected,
           ]}
           onPress={() => setSelectedOption('phone')}
         >
-          <View style={styles.iconTextRow}>
+          <View style={commonStyles.iconTextRow}>
             <PhoneIcon width={24} height={24} />
-            <View style={styles.textContainer}>
-              <Text style={styles.cardTitle}>Phone</Text>
-              <Text style={styles.cardSubtitle}>Code sent to your sms</Text>
+            <View style={commonStyles.textContainer}>
+              <Text style={commonStyles.cardTitle}>Phone</Text>
+              <Text style={commonStyles.cardSubtitle}>Code sent to your sms</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -90,57 +91,3 @@ const ForgetPassword = () => {
 };
 
 export default ForgetPassword;
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: BrainboxColor.Black,
-    flex: 1,
-  },
-  headerContainer: {
-    marginTop: hp(2),
-    paddingHorizontal: 20,
-  },
-  titleLineOne: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  headingTextv1: {
-    fontWeight: '600',
-    fontFamily: 'SemiBold',
-    fontSize: 16,
-    color: BrainboxColor.Silver,
-    marginTop: 15,
-  },
-  selectionContainer: {
-    paddingHorizontal: 20,
-    marginTop: 30,
-  },
-  card: {
-    backgroundColor:BrainboxColor.Onyx,
-    borderRadius: 20,
-    padding: 16,
-    marginBottom: 16,
-  },
-  cardSelected: {
-    borderWidth: 1.5,
-    borderColor: BrainboxColor.secondary,
-  },
-  iconTextRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  textContainer: {
-    marginLeft: 12,
-  },
-  cardTitle: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  cardSubtitle: {
-    color: BrainboxColor.gray,
-    fontSize: 14,
-    marginTop: 4,
-  },
-});

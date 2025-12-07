@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Text } from 'react-native-gesture-handler';
 import BrainboxContainer from '../components/BrainboxContainer';
-import BrainboxColor from '../utils/Colors';
 import BrainBoxHeader from '../components/BrainBoxHeader';
-import { hp } from '../utils/responsive';
 import BrainBoxInput from '../components/BrainBoxInput';
 import PrimaryButton from '../components/PrimaryButton';
 import BrainboxBottomsheet from '../components/BrainboxBottomsheet';
+import commonStyles from '../utils/commonStyles';
+import BrainboxColor from '../utils/Colors';
 
 // SVG Icons
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
@@ -55,16 +55,16 @@ const ResetPassword = () => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={styles.screen}
+      style={commonStyles.screen}
     >
       <BrainBoxHeader showMenu={false} backAction={handleGoBack} />
 
-      <View style={styles.headerContainer}>
-        <Text style={styles.titleLineOne}>Reset Your</Text>
-        <Text style={styles.titleLineTwo}>Password</Text>
+      <View style={commonStyles.headerContainer}>
+        <Text style={commonStyles.titleLineOne}>Reset Your</Text>
+        <Text style={commonStyles.titleLineTwo}>Password</Text>
       </View>
 
-      <View style={styles.inputContainer}>
+      <View style={commonStyles.inputContainer}>
         {/* New Password */}
         <BrainBoxInput
           placeholder="New Password"
@@ -120,13 +120,13 @@ const ResetPassword = () => {
   maxHeight={300}
 >
   <View style={{ alignItems: 'center', paddingVertical: 20 }}>
-    <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600', textAlign: 'center' }}>
+    <Text style={{ color: BrainboxColor.secondary, fontSize: 18, fontWeight: '600', textAlign: 'center' }}>
       🎉 Password Reset Successful!
     </Text>
-    <Text style={{ color: '#aaa', marginTop: 8, textAlign: 'center' }}>
+    <Text style={{ color: BrainboxColor.LightGray2, marginTop: 8, textAlign: 'center' }}>
       Your password has been updated.
     </Text>
-    <Text style={{ color: '#aaa', textAlign: 'center' }}>
+    <Text style={{ color: BrainboxColor.LightGray2, textAlign: 'center' }}>
       You can now log in with your new credentials.
     </Text>
 
@@ -147,28 +147,3 @@ const ResetPassword = () => {
 };
 
 export default ResetPassword;
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: BrainboxColor.Black,
-    flex: 1,
-  },
-  headerContainer: {
-    marginTop: hp(2),
-    paddingHorizontal: 20,
-  },
-  titleLineOne: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  titleLineTwo: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  inputContainer: {
-    paddingHorizontal: 20,
-    marginTop: hp(2),
-  },
-});

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 import { wp, hp } from '../utils/responsive';
+import BrainboxColor from '../utils/Colors';
 
-const PrimaryBoxButton = ({ label, onPress, backgroundColor = '#333', textColor = '#fff' }) => {
+const PrimaryBoxButton = ({ label, onPress, backgroundColor = BrainboxColor.MediumGray2, textColor = BrainboxColor.secondary }) => {
   return (
     <Pressable
       onPress={onPress}
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '600',
     letterSpacing: 1,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
     textTransform: 'uppercase',
   },
 });

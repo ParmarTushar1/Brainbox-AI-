@@ -1,23 +1,25 @@
 import React from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 
 import MicIcon from '../assets/images/Svg/microphone-svgrepo-com.svg';
 import PlusIcon from '../assets/images/Svg/plus-svgrepo-com.svg';
 import ArrowDownIcon from '../assets/images/Svg/arrow-down-svgrepo-com.svg';
+import commonStyles from '../utils/commonStyles';
+import BrainboxColor from '../utils/Colors';
 
 const ChatInputBar = ({ question, setQuestion, onSend }) => {
   return (
-    <View style={styles.inputBar}>
+    <View style={commonStyles.inputBar}>
       {/* Plus Button */}
-      <TouchableOpacity style={styles.iconButton}>
+      <TouchableOpacity style={commonStyles.iconButton}>
         <PlusIcon width={22} height={22} />
       </TouchableOpacity>
 
       {/* Input Field */}
       <TextInput
-        style={styles.textInput}
+        style={commonStyles.textInput}
         placeholder="Ask anything"
-        placeholderTextColor="#999"
+        placeholderTextColor={BrainboxColor.MediumGray5}
         value={question}
         onChangeText={setQuestion}
         onSubmitEditing={onSend}
@@ -25,15 +27,15 @@ const ChatInputBar = ({ question, setQuestion, onSend }) => {
       />
 
       {/* Mic Button */}
-      <TouchableOpacity style={[styles.iconButton, styles.micButton]}>
+      <TouchableOpacity style={[commonStyles.iconButton, commonStyles.micButton]}>
         <MicIcon width={22} height={22} />
       </TouchableOpacity>
 
       {/* Send Button */}
       <TouchableOpacity
         style={[
-          styles.iconButton,
-          question.trim() ? styles.sendActive : styles.sendDisabled,
+          commonStyles.iconButton,
+          question.trim() ? commonStyles.sendActive : commonStyles.sendDisabled,
         ]}
         onPress={onSend}
         disabled={!question.trim()}
@@ -45,42 +47,3 @@ const ChatInputBar = ({ question, setQuestion, onSend }) => {
 };
 
 export default ChatInputBar;
-
-const styles = StyleSheet.create({
-  inputBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#2c2c2e',
-    borderRadius: 30,
-    paddingHorizontal: 10,
-    margin: 9,
-    minHeight: 60,
-  },
-  textInput: {
-    flex: 1,
-    color: '#fff',
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    maxHeight: 120,
-  },
-  iconButton: {
-    padding: 8,
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 4,
-  },
-  sendActive: {
-    backgroundColor: '#2c2c2e',
-    borderRadius: 20,
-  },
-  sendDisabled: {
-    backgroundColor: '#444',
-    borderRadius: 20,
-  },
-  micButton: {
-    backgroundColor: '#444',
-    borderRadius: 20,
-  },
-});

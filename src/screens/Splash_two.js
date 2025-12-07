@@ -1,5 +1,5 @@
 import React, { useRef, useState, useMemo } from 'react';
-import { Dimensions, StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { Dimensions, View, TouchableOpacity, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Carousel from 'react-native-reanimated-carousel';
 import BrainboxContainer from '../components/BrainboxContainer';
@@ -10,6 +10,7 @@ import LeftChevron from '../assets/images/Svg/Left-chevron.svg';
 import RightChevron from '../assets/images/Svg/right-chevron.svg';
 import BrainboxColor from '../utils/Colors';
 import { SCREEN_HEIGHT } from '../utils/responsive';
+import commonStyles from '../utils/commonStyles';
 
 const { width } = Dimensions.get('window');
 
@@ -73,14 +74,14 @@ const Splash_two = () => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={{ backgroundColor: 'black', padding: 0 }}
+      style={commonStyles.screenWithPadding}
     >
-      <View style={styles.container}>
+      <View style={[commonStyles.container, { alignItems: 'center' }]}>
 
         {/* Skip Button */}
-        <View style={styles.skipContainer}>
+        <View style={commonStyles.skipContainer}>
           <TouchableOpacity onPress={() => navigation.navigate('WelcomeLogin')}>
-            <Text style={styles.skipText}>Skip</Text>
+            <Text style={commonStyles.skipText}>Skip</Text>
           </TouchableOpacity>
         </View>
 
@@ -108,7 +109,7 @@ const Splash_two = () => {
             setCurrentIndex(index);
           }}
           renderItem={({ item: Rectangle }) => (
-            <View style={styles.imageContainer}>
+            <View style={commonStyles.imageContainer}>
               <Rectangle width={340} height={466} />
             </View>
           )}
@@ -119,13 +120,13 @@ const Splash_two = () => {
           pagingEnabled={true}
         />
 
-        <View style={styles.dotsContainer}>
+        <View style={commonStyles.dotsContainer}>
           {rectangles.map((_, index) => (
             <TouchableOpacity
               key={index}
               style={[
-                styles.dot,
-                currentIndex === index ? styles.activeDot : null,
+                commonStyles.dot,
+                currentIndex === index ? commonStyles.activeDot : null,
               ]}
               onPress={() => handleDotPress(index)}
             />
@@ -133,18 +134,18 @@ const Splash_two = () => {
         </View>
 
         <View>
-          <Text style={styles.headingText}>
+          <Text style={commonStyles.headingTextLarge}>
             {textContent[currentIndex].heading}
           </Text>
-          <Text style={styles.headingTextv1}>
+          <Text style={commonStyles.headingTextv1}>
             {textContent[currentIndex].subheading}
           </Text>
         </View>
 
         {/* Navigation Buttons */}
-        <View style={styles.navContainer}>
+        <View style={commonStyles.navContainer}>
           <TouchableOpacity
-            style={styles.navButton}
+            style={commonStyles.navButton}
             onPress={handleLeftPress}
             disabled={currentIndex === 0}
           >
@@ -155,10 +156,10 @@ const Splash_two = () => {
             />
           </TouchableOpacity>
 
-          <View style={styles.divider} />
+          <View style={commonStyles.dividerVertical} />
 
           <TouchableOpacity
-            style={styles.navButton}
+            style={commonStyles.navButton}
             onPress={handleRightPress}
             disabled={false}
           >
@@ -173,81 +174,5 @@ const Splash_two = () => {
     </BrainboxContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  skipContainer: {
-    position: 'absolute',
-    top: 50,
-    right: 20,
-    zIndex: 10,
-  },
-  skipText: {
-    color: BrainboxColor.secondary,
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  imageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  dotsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  dot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: BrainboxColor.gray,
-    marginHorizontal: 6,
-  },
-  activeDot: {
-    backgroundColor: BrainboxColor.secondary,
-    width: 10,
-    height: 10,
-  },
-  headingText: {
-    fontWeight: '800',
-    fontFamily: 'ExtraBold',
-    fontSize: 33.5,
-    color: BrainboxColor.secondary,
-    marginTop: SCREEN_HEIGHT * 0.02,
-    textAlign: 'center', 
-  },
-  headingTextv1: {
-    fontWeight: '600',
-    fontFamily: 'SemiBold',
-    fontSize: 16.5,
-    color: BrainboxColor.Graysteel,
-    textAlign: 'center',
-  },
-  navContainer: {
-    flexDirection: 'row',
-    backgroundColor:BrainboxColor.Onyx,
-    borderRadius: 20,
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: 140,
-    height: 50,
-    alignSelf: 'center',
-    marginTop: SCREEN_HEIGHT * 0.03,
-  },
-  navButton: {
-    paddingHorizontal: 6,
-    paddingVertical: 6,
-  },
-  divider: {
-    width: 1,
-    height: 26,
-    backgroundColor:BrainboxColor.secondary,
-    opacity: 0.5,
-  },
-});
 
 export default Splash_two;

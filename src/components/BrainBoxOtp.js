@@ -128,18 +128,18 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
     marginHorizontal: 6,
     fontSize: 20,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
     color:BrainboxColor.secondary,
     backgroundColor: 'transparent',
   },
   defaultBorder: {
-    borderColor: '#ccc',
+    borderColor: BrainboxColor.LightGray,
   },
   errorBorder: {
-    borderColor: '#ff4d4f',
+    borderColor: BrainboxColor.ErrorRed2,
   },
   successBorder: {
-    borderColor: 'limegreen',
+    borderColor: BrainboxColor.SuccessGreen2,
   },
   messageWrapper: {
     alignSelf: 'flex-start',
@@ -151,10 +151,10 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   errorText: {
-    color: '#ff4d4f',
+    color: BrainboxColor.ErrorRed2,
     fontSize: 12,
     marginLeft: 4,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
     height: hp(2.2),
   },
   successRow: {
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     color: 'limegreen',
     fontSize: 12,
     marginLeft: 4,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
     height: hp(2.2),
   },
 });

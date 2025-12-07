@@ -126,17 +126,17 @@ const styles = StyleSheet.create({
   },
 
   disabledText: {
-    color: '#9e9e9e',
+    color: BrainboxColor.MediumGray5,
   },
 
   secondaryContainer: {
-    backgroundColor: '#1E1E1E', 
+    backgroundColor: BrainboxColor.DarkGray6, 
   },
   secondaryDisabledContainer: {
-    backgroundColor: '#2A2A2A', 
+    backgroundColor: BrainboxColor.DarkGray7, 
   },
   pressedContainer: {
-    backgroundColor: '#333333',
+    backgroundColor: BrainboxColor.MediumGray3,
   },
 
   btnImg: {

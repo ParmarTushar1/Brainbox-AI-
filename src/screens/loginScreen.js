@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainBoxHeader from '../components/BrainBoxHeader';
-import { hp, SCREEN_HEIGHT, SCREEN_WIDTH, wp } from '../utils/responsive';
+import { hp } from '../utils/responsive';
 import BrainboxColor from '../utils/Colors';
+import commonStyles from '../utils/commonStyles';
 import UserIcon from '../assets/images/Svg/User Icon.svg';
 import EmailIcon from '../assets/images/Svg/Email Icon.svg';
 import LockIcon from '../assets/images/Svg/Lock Icon.svg';
@@ -58,22 +58,22 @@ const LoginScreen = () => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={styles.screen}
+      style={commonStyles.screen}
     >
       <BrainBoxScrollContainer
-        contentContainerStyle={styles.scrollContainer}
+        contentContainerStyle={commonStyles.scrollContainer}
         keyboardShouldPersistTaps="handled"
         enableKeyboardAvoid={true}
         keyboardVerticalOffset={hp(5)}
        >
         <BrainBoxHeader showMenu={false} backAction={handleSignInPress} />
 
-        <View style={styles.headerContainer}>
-          <Text style={styles.titleLineOne}>Create your</Text>
-          <Text style={styles.titleLineTwo}>Account</Text>
+        <View style={commonStyles.headerContainer}>
+          <Text style={commonStyles.titleLineOne}>Create your</Text>
+          <Text style={commonStyles.titleLineTwo}>Account</Text>
         </View>
 
-        <View style={styles.inputContainer}>
+        <View style={commonStyles.inputContainer}>
           <BrainBoxInput
             placeholder="Full Name"
             value={fullName}
@@ -122,18 +122,18 @@ const LoginScreen = () => {
           />
 
           {/* Sign In Option */}
-          <View style={styles.signInRow}>
-            <Text style={styles.greyText}>Already Have An Account? </Text>
+          <View style={commonStyles.signInRow}>
+            <Text style={commonStyles.greyText}>Already Have An Account? </Text>
             <TouchableOpacity onPress={handleSignInPress}>
-              <Text style={styles.whiteText}>Sign In</Text>
+              <Text style={commonStyles.whiteText}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>
         {/* Fixed-position-like Social Login Section */}
-        <View style={styles.SectionLine} />
-        <View style={styles.socialContainer}>
-          <Text style={styles.orText}>Continue With Accounts</Text>
-          <View style={styles.socialButtonRow}>
+        <View style={commonStyles.divider} />
+        <View style={commonStyles.socialContainer}>
+          <Text style={commonStyles.orText}>Continue With Accounts</Text>
+          <View style={commonStyles.socialButtonRow}>
             <PrimaryBoxButton
               label="Google"
               backgroundColor={BrainboxColor.PersianPlum}
@@ -152,73 +152,3 @@ const LoginScreen = () => {
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: BrainboxColor.Black,
-    flex: 1,
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'flex-start',
-    paddingBottom: SCREEN_HEIGHT * 0.05,
-  },
-  headerContainer: {
-    marginTop: hp(2),
-    paddingHorizontal: 20,
-  },
-  titleLineOne: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  titleLineTwo: {
-    fontSize: 34,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-  },
-  inputContainer: {
-    paddingHorizontal: 20,
-    marginTop: hp(2),
-  },
-  signInRow: {
-    marginTop: 24,
-    alignItems: 'center',
-    flexDirection: 'row',
-    justifyContent: 'center',
-  },
-  greyText: {
-    color: BrainboxColor.gray,
-    fontSize: 14,
-    fontFamily: 'Medium',
-  },
-  whiteText: {
-    color: BrainboxColor.secondary,
-    fontSize: 14,
-    fontFamily: 'Medium',
-  },
-  orText: {
-    fontSize: 14,
-    color: BrainboxColor.Graysteel,
-    fontFamily: 'Medium',
-  },
-  socialContainer: {
-    alignItems: 'center',
-    gap: wp(5),
-    marginBottom:24,
-    top:SCREEN_HEIGHT*0.045
-
-  },
-  socialButtonRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    gap: wp(4),
-  },
-   SectionLine: {
-    height: hp('0.1'),
-    backgroundColor: BrainboxColor.Silver,
-    marginVertical: 20,
-    width: SCREEN_WIDTH * 0.9,
-    top:SCREEN_HEIGHT*0.045
-  },
-});

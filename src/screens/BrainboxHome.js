@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
   FlatList,
@@ -9,8 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import BrainboxContainer from '../components/BrainboxContainer';
-import BrainboxColor from '../utils/Colors';
 import BrainBoxHeader from '../components/BrainBoxHeader';
+import commonStyles from '../utils/commonStyles';
 import { useNavigation, DrawerActions } from '@react-navigation/native';
 import DrawerMenuIcon from '../assets/images/Svg/drawer-app-menu.svg';
 
@@ -57,25 +56,25 @@ const BrainboxHome = () => {
   };
 
   const renderActions = () => (
-    <View style={styles.actionsRow}>
-      <TouchableOpacity style={styles.iconSmall}><CopyIcon width={20} height={20} /></TouchableOpacity>
-      <TouchableOpacity style={styles.iconSmall}><ThumbsUpIcon width={20} height={20} /></TouchableOpacity>
-      <TouchableOpacity style={styles.iconSmall}><ThumbsDownIcon width={20} height={20} /></TouchableOpacity>
-      <TouchableOpacity style={styles.iconSmall}><DownloadIcon width={20} height={20} /></TouchableOpacity>
-      <TouchableOpacity style={styles.iconSmall}><SendIcon width={20} height={20} /></TouchableOpacity>
-      <TouchableOpacity style={styles.iconSmall}><MoreIcon width={20} height={20} /></TouchableOpacity>
+    <View style={commonStyles.actionsRow}>
+      <TouchableOpacity style={commonStyles.iconSmall}><CopyIcon width={20} height={20} /></TouchableOpacity>
+      <TouchableOpacity style={commonStyles.iconSmall}><ThumbsUpIcon width={20} height={20} /></TouchableOpacity>
+      <TouchableOpacity style={commonStyles.iconSmall}><ThumbsDownIcon width={20} height={20} /></TouchableOpacity>
+      <TouchableOpacity style={commonStyles.iconSmall}><DownloadIcon width={20} height={20} /></TouchableOpacity>
+      <TouchableOpacity style={commonStyles.iconSmall}><SendIcon width={20} height={20} /></TouchableOpacity>
+      <TouchableOpacity style={commonStyles.iconSmall}><MoreIcon width={20} height={20} /></TouchableOpacity>
     </View>
   );
 
   const renderMessage = ({ item }) => (
-    <View style={styles.messageWrapper}>
+    <View style={commonStyles.messageWrapper}>
       <View
         style={[
-          styles.messageBubble,
-          item.sender === 'user' ? styles.userBubble : styles.aiBubble,
+          commonStyles.messageBubble,
+          item.sender === 'user' ? commonStyles.userBubble : commonStyles.aiBubble,
         ]}
       >
-        <Text style={styles.messageText}>{item.text}</Text>
+        <Text style={commonStyles.messageText}>{item.text}</Text>
       </View>
       {item.sender === 'ai' && renderActions()}
     </View>
@@ -98,7 +97,7 @@ const BrainboxHome = () => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={styles.screen}
+      style={commonStyles.screen}
     >
       {/* Header */}
       <BrainBoxHeader
@@ -109,7 +108,7 @@ const BrainboxHome = () => {
 
       {/* Chat Section */}
       <KeyboardAvoidingView
-        style={styles.content}
+        style={commonStyles.content}
         behavior={Platform.OS === 'ios' ? 'padding' : undefined}
         keyboardVerticalOffset={80}
       >
@@ -118,7 +117,7 @@ const BrainboxHome = () => {
           data={messages}
           renderItem={renderMessage}
           keyExtractor={item => item.id}
-          contentContainerStyle={styles.chatContainer}
+          contentContainerStyle={commonStyles.chatContainer}
           onContentSizeChange={() =>
             flatListRef.current?.scrollToEnd({ animated: true })
           }
@@ -136,48 +135,3 @@ const BrainboxHome = () => {
 };
 
 export default BrainboxHome;
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: BrainboxColor.Black,
-    flex: 1,
-  },
-  content: {
-    flex: 1,
-  },
-  chatContainer: {
-    padding: 16,
-    flexGrow: 1,
-    justifyContent: 'flex-end',
-  },
-  messageWrapper: {
-    marginBottom: 12,
-  },
-  messageBubble: {
-    maxWidth: '75%',
-    padding: 12,
-    borderRadius: 16,
-  },
-  userBubble: {
-    backgroundColor: '#2c2c2e',
-    alignSelf: 'flex-end',
-    borderBottomRightRadius: 4,
-  },
-  aiBubble: {
-    backgroundColor: '#2c2c2e',
-    alignSelf: 'flex-start',
-    borderBottomLeftRadius: 4,
-  },
-  messageText: {
-    color: '#fff',
-    fontSize: 16,
-  },
-  actionsRow: {
-    flexDirection: 'row',
-    marginTop: 6,
-    marginLeft: 4,
-  },
-  iconSmall: {
-    padding: 6,
-  },
-});

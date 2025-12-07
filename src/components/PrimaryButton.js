@@ -2,6 +2,7 @@ import React, { useState, useMemo, useCallback } from 'react';
 import { Pressable, Text, Image, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { wp, hp } from '../utils/responsive';
+import BrainboxColor from '../utils/Colors';
 
 const PrimaryButton = ({
   testID,
@@ -23,10 +24,10 @@ const PrimaryButton = ({
 
   const buttonBgColor = useMemo(() => {
     return disabled
-      ? colors.primaryLight?.primaryLight4 || '#444'
+      ? colors.primaryLight?.primaryLight4 || BrainboxColor.MediumGray
       : !isPressed
-      ? '#1C1E1F' // consistent with dark background in screenshot
-      : '#333';   // pressed state
+      ? BrainboxColor.DarkGray3 // consistent with dark background in screenshot
+      : BrainboxColor.MediumGray2;   // pressed state
   }, [disabled, isPressed, colors]);
 
   const containerStyle = useMemo(() => {
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     paddingHorizontal: 16,
-    backgroundColor: '#1C1E1F',
+    backgroundColor: BrainboxColor.DarkGray3,
   },
   mediumContainer: {
     width: wp(80),
@@ -89,7 +90,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     paddingHorizontal: 20,
-    backgroundColor: '#1C1E1F',
+    backgroundColor: BrainboxColor.DarkGray3,
   },
   largeContainer: {
     width: wp(95),
@@ -100,27 +101,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     paddingHorizontal: 24,
-    backgroundColor: '#1C1E1F',
+    backgroundColor: BrainboxColor.DarkGray3,
   },
   smallButtonLabel: {
     fontSize: 15,
     fontWeight: '600',
-    color: '#fff',
-    fontFamily: 'Medium',
+    color: BrainboxColor.secondary,
+    fontFamily: 'Manrope-Medium',
     letterSpacing: 0.5,
   },
   mediumButtonLabel: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
-    fontFamily: 'Medium',
+    color: BrainboxColor.secondary,
+    fontFamily: 'Manrope-Medium',
     letterSpacing: 0.5,
   },
   largeButtonLabel: {
     fontSize: 17,
     fontWeight: '700',
-    color: '#fff',
-    fontFamily: 'Medium',
+    color: BrainboxColor.secondary,
+    fontFamily: 'Manrope-Medium',
     letterSpacing: 0.8,
   },
   btnImg: {

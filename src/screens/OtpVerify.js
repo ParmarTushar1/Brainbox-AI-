@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainBoxOtp from '../components/BrainBoxOtp';
 import BrainBoxHeader from '../components/BrainBoxHeader';
-import BrainboxColor from '../utils/Colors';
 import { wp } from '../utils/responsive';
 import BrainboxBottomsheet from '../components/BrainboxBottomsheet';
 import PrimaryButton from '../components/PrimaryButton';
+import commonStyles from '../utils/commonStyles';
 
 const OtpVerify = () => {
   const [sheetVisible, setSheetVisible] = useState(false);
@@ -64,7 +64,7 @@ const OtpVerify = () => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={styles.screen}
+      style={commonStyles.screen}
     >
       <BrainBoxHeader showMenu={false} backAction={handleBackPress} />
 
@@ -72,17 +72,17 @@ const OtpVerify = () => {
         visible={sheetVisible}
         setVisible={handleSheetClose}
         title={
-          <View style={styles.titleWrapper}>
-            <Text style={styles.titleText}>Verify Phone Number</Text>
+          <View style={commonStyles.titleWrapper}>
+            <Text style={commonStyles.titleText}>Verify Phone Number</Text>
           </View>
         }
         outsideTab={true}
       >
-        <Text style={styles.subtitle}>
+        <Text style={commonStyles.subtitle}>
           We Have Sent Code To Your Phone Number
         </Text>
 
-        <View style={styles.otpWrapper}>
+        <View style={commonStyles.otpWrapper}>
           <BrainBoxOtp
             otpLength={4}
             onOtpChange={setOtp}
@@ -90,13 +90,13 @@ const OtpVerify = () => {
             errorText={otp.length === 4 && otp !== '8888' ? 'Incorrect code' : ''}
           />
 
-          <Text style={styles.timerText}>
+          <Text style={commonStyles.timerText}>
             {timer > 0
               ? `Resend code in 00:${timer < 10 ? `0${timer}` : timer}`
               : 'You can resend the code now.'}
           </Text>
 
-          <View style={styles.socialButtonRow}>
+          <View style={commonStyles.socialButtonRowColumn}>
             {/* You can keep this if you still want manual verify */}
             <PrimaryButton
               label="Verify"
@@ -117,43 +117,4 @@ const OtpVerify = () => {
 };
 
 export default OtpVerify;
-
-const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: BrainboxColor.Black,
-    flex: 1,
-  },
-  titleWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: BrainboxColor.secondary,
-    textAlign: 'center',
-  },
-  subtitle: {
-    color: BrainboxColor.Graysteel,
-    fontSize: 14,
-    marginTop: 12,
-    textAlign: 'center',
-  },
-  otpWrapper: {
-    alignSelf: 'stretch',
-    marginBottom: 24,
-  },
-  timerText: {
-    textAlign: 'center',
-    color: BrainboxColor.Graysteel,
-    marginVertical: 8,
-    fontSize: 13,
-  },
-  socialButtonRow: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    gap: wp(4),
-  },
-});
 

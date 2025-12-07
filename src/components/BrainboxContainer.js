@@ -29,10 +29,10 @@ const BrainboxContainer = ({
 
       <View
         testID={testID}
-        style={[
+          style={[
           styles.container,
           {
-            backgroundColor: customStyle?.backgroundColor || 'black',
+            backgroundColor: customStyle?.backgroundColor || BrainboxColor.Black,
           },
           customStyle,
         ]}
@@ -48,7 +48,7 @@ export default BrainboxContainer;
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: BrainboxColor.Black,
   },
   container: {
     flex: 1,

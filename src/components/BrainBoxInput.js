@@ -11,6 +11,7 @@ import {
 import ErrorIcon from '../assets/images/Svg/ErrorIcon.svg';
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
 import { hp } from '../utils/responsive';
+import BrainboxColor from '../utils/Colors';
 
 const BrainBoxInput = forwardRef(({
   value = '',
@@ -65,12 +66,12 @@ const BrainBoxInput = forwardRef(({
     position: 'absolute',
     left: leftSvgIcon ? 48 : 16,
     color: errorText
-      ? '#ff4d4f'
+      ? BrainboxColor.ErrorRed2
       : isFocused
-      ? '#fff'
+      ? BrainboxColor.secondary
       : successText
-      ? 'limegreen'
-      : '#888',
+      ? BrainboxColor.SuccessGreen2
+      : BrainboxColor.MediumGray4,
     fontSize: animation.interpolate({
       inputRange: [0, 1],
       outputRange: [16, 13],
@@ -79,7 +80,7 @@ const BrainBoxInput = forwardRef(({
       inputRange: [0, 1],
       outputRange: [20, 6],
     }),
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
   };
 
   return (
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
     height: 66,
     paddingHorizontal: 16,
     borderRadius: 12,
-    backgroundColor: '#1c1c1e',
+    backgroundColor: BrainboxColor.DarkGray4,
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 2,
@@ -177,32 +178,32 @@ const styles = StyleSheet.create({
   },
   textInput: {
     fontSize: 16,
-    color: '#fff',
+    color: BrainboxColor.secondary,
     paddingVertical: 0,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
   },
   defaultBorder: {
-    borderColor: '#444',
+    borderColor: BrainboxColor.MediumGray,
   },
   focusBorder: {
-    borderColor: '#fff',
-    shadowColor: '#ffffffaa',
+    borderColor: BrainboxColor.secondary,
+    shadowColor: BrainboxColor.WhiteOpacity,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.5,
     shadowRadius: 4,
     elevation: 5,
   },
   errorBorder: {
-    borderColor: '#ff4d4f',
-    shadowColor: '#ff4d4faa',
+    borderColor: BrainboxColor.ErrorRed2,
+    shadowColor: BrainboxColor.RedOpacity,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.7,
     shadowRadius: 4,
     elevation: 5,
   },
   successBorder: {
-    borderColor: 'limegreen',
-    shadowColor: 'limegreen',
+    borderColor: BrainboxColor.SuccessGreen2,
+    shadowColor: BrainboxColor.SuccessGreen2,
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.4,
     shadowRadius: 4,
@@ -215,10 +216,10 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   errorText: {
-    color: '#ff4d4f',
+    color: BrainboxColor.ErrorRed2,
     fontSize: 12,
     marginLeft: 4,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
     height: hp(2.2),
   },
   successRow: {
@@ -228,10 +229,10 @@ const styles = StyleSheet.create({
     marginLeft: 4,
   },
   successText: {
-    color: 'limegreen',
+    color: BrainboxColor.SuccessGreen2,
     fontSize: 12,
     marginLeft: 4,
-    fontFamily: 'Medium',
+    fontFamily: 'Manrope-Medium',
     height: hp(2.2),
   },
 });

@@ -25,7 +25,7 @@ const BrainboxBottomsheet = ({
   showCrossIcon = false,
   showTitle = true,
   title = '',
-  titleColor = '#fff',
+  titleColor = BrainboxColor.secondary,
   titleViewStyle,
   onClickCross = () => {},
   maxHeight = 540,
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: BrainboxColor.LightGray3,
     marginVertical: 12,
   },
 });

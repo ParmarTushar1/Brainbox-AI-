@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -10,6 +10,7 @@ import Animated, {
 import Logo from '../assets/images/Svg/Logo.svg';
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainboxColor from '../utils/Colors';
+import commonStyles from '../utils/commonStyles';
 
 const Splash = ({ navigation }) => {
   const scale = useSharedValue(0.5);
@@ -69,44 +70,19 @@ const Splash = ({ navigation }) => {
       statusBarColor="transparent"
       statusBarStyle="light-content"
       statusBarHidden={false}
-      style={{ backgroundColor: 'black', padding: 0 }}
+      style={commonStyles.screenWithPadding}
     >
-      <View style={styles.container}>
+      <View style={commonStyles.centerContainer}>
         <Animated.View style={animatedLogoStyle}>
           <Logo width={120} height={120} />
         </Animated.View>
-        <Animated.View style={[styles.footer, animatedTextStyle]}>
-          <Text style={styles.footerText}>Brainbox AI</Text>
-          <Text style={styles.footerTextTwo}>Version 0.1</Text>
+        <Animated.View style={[commonStyles.footer, animatedTextStyle]}>
+          <Text style={commonStyles.footerText}>Brainbox AI</Text>
+          <Text style={commonStyles.footerTextTwo}>Version 0.1</Text>
         </Animated.View>
       </View>
     </BrainboxContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  footer: {
-    position: 'absolute',
-    bottom: 30,
-    alignItems: 'center',
-  },
-  footerText: {
-    fontFamily:'SemiBold',
-    fontWeight: '700',
-    color: 'white',
-    fontSize: 25,
-  },
-  footerTextTwo: {
-    fontFamily:'Regular',
-    fontWeight: '400',
-    color:BrainboxColor.gray,
-    fontSize: 17,
-  },
-});
 
 export default Splash;

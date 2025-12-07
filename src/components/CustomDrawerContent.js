@@ -9,6 +9,7 @@ import SearchIcon from '../assets/images/Svg/search-svgrepo-com.svg';
 import ImageIcon from '../assets/images/Svg/image-svgrepo-com.svg';
 import UserIcon from '../assets/images/Svg/Ellipse_user.svg';
 import { SCREEN_HEIGHT } from '../utils/responsive';
+import BrainboxColor from '../utils/Colors';
 
 const CustomDrawerContent = (props) => {
   const spinValue = useRef(new Animated.Value(0)).current;
@@ -84,7 +85,7 @@ const CustomDrawerContent = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#121212',
+    backgroundColor: BrainboxColor.DarkGray5,
     padding: 16,
   },
   header: {
@@ -107,19 +108,19 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   menuText: {
-    color: '#fff',
+    color: BrainboxColor.secondary,
     fontSize: 16,
     marginLeft: 10,
   },
   menuTextv1: {
-    color: '#fff',
+    color: BrainboxColor.secondary,
     fontSize: 16,
     marginLeft: 10,
     marginTop: SCREEN_HEIGHT * 0.05,
   },
   footer: {
     borderTopWidth: 1,
-    borderTopColor: '#333',
+    borderTopColor: BrainboxColor.MediumGray2,
     paddingTop: 16,
   },
   profileRow: {
@@ -135,11 +136,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   username: {
-    color: '#fff',
+    color: BrainboxColor.secondary,
     fontWeight: 'bold',
   },
   plan: {
-    color: '#888',
+    color: BrainboxColor.MediumGray4,
   },
 });
 
