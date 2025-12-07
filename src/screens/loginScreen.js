@@ -20,9 +20,14 @@ import PrimaryBoxButton from '../components/PrimaryBoxButton';
 import BrainBoxScrollContainer from '../components/BrainBoxScrollContainer';
 import { useNavigation } from '@react-navigation/native';
 import EyeOnIcon from '../assets/images/Svg/Eye-On.svg';
+import { logFunction } from '../utils/commonFunctions';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    logFunction('Screen: LoginScreen');
+  }, []);
 
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');

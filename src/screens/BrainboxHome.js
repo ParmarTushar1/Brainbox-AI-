@@ -13,6 +13,7 @@ import BrainBoxHeader from '../components/BrainBoxHeader';
 import commonStyles from '../utils/commonStyles';
 import { useNavigation, DrawerActions, useFocusEffect } from '@react-navigation/native';
 import DrawerMenuIcon from '../assets/images/Svg/drawer-app-menu.svg';
+import { logFunction } from '../utils/commonFunctions';
 
 // Action icons
 import ThumbsUpIcon from '../assets/images/Svg/thumbs-up-svgrepo-com.svg';
@@ -33,6 +34,7 @@ const BrainboxHome = () => {
   // Handle hardware back button - exit app when pressed
   useFocusEffect(
     useCallback(() => {
+      logFunction('Screen: BrainboxHome');
       const onBackPress = () => {
         BackHandler.exitApp();
         return true; // Prevent default behavior

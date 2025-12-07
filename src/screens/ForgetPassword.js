@@ -9,9 +9,15 @@ import EmailIcon from '../assets/images/Svg/Email.svg';
 import PhoneIcon from '../assets/images/Svg/Vector.svg';
 import PrimaryButton from '../components/PrimaryButton';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const ForgetPassword = () => {
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    logFunction('Screen: ForgetPassword');
+  }, []);
+
   const [selectedOption, setSelectedOption] = useState(null); 
 
   const handleSignInPress = () => {

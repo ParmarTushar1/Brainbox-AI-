@@ -11,12 +11,17 @@ import Logo from '../assets/images/Svg/Logo.svg';
 import BrainboxContainer from '../components/BrainboxContainer';
 import BrainboxColor from '../utils/Colors';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const Splash = ({ navigation }) => {
   const scale = useSharedValue(0.5);
   const opacity = useSharedValue(0);
   const textTranslateY = useSharedValue(0);
   const textOpacity = useSharedValue(1);
+
+  useEffect(() => {
+    logFunction('Screen: Splash');
+  }, []);
 
   useEffect(() => {
     // Start entrance animation

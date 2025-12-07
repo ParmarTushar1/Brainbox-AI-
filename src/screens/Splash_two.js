@@ -11,6 +11,7 @@ import RightChevron from '../assets/images/Svg/right-chevron.svg';
 import BrainboxColor from '../utils/Colors';
 import { SCREEN_HEIGHT } from '../utils/responsive';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const { width } = Dimensions.get('window');
 
@@ -19,6 +20,10 @@ const Splash_two = () => {
   const [swipeCount, setSwipeCount] = useState(0);
   const carouselRef = useRef(null);
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    logFunction('Screen: Splash_two');
+  }, []);
 
   // 🧠 Memoized static data
   const rectangles = useMemo(() => [Rectangle_1, Rectangle_2, Rectangle_3], []);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 import BrainboxContainer from '../components/BrainboxContainer';
 import Logo from '../assets/images/Svg/Logo.svg';
@@ -8,9 +8,14 @@ import StandardButton from '../components/StandardButton';
 import PrimaryBoxButton from '../components/PrimaryBoxButton';
 import { useNavigation } from '@react-navigation/native';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const WelcomeLogin = () => {
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    logFunction('Screen: WelcomeLogin');
+  }, []); 
 
   return (
     <BrainboxContainer

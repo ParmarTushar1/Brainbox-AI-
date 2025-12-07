@@ -18,9 +18,14 @@ import PrimaryBoxButton from '../components/PrimaryBoxButton';
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
 import EyeOnIcon from '../assets/images/Svg/Eye-On.svg';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const LoginAccount = () => {
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    logFunction('Screen: LoginAccount');
+  }, []);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

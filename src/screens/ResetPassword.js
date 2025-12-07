@@ -9,6 +9,7 @@ import PrimaryButton from '../components/PrimaryButton';
 import BrainboxBottomsheet from '../components/BrainboxBottomsheet';
 import commonStyles from '../utils/commonStyles';
 import BrainboxColor from '../utils/Colors';
+import { logFunction } from '../utils/commonFunctions';
 
 // SVG Icons
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
@@ -16,6 +17,10 @@ import LockIcon from '../assets/images/Svg/Lock Icon.svg';
 
 const ResetPassword = () => {
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    logFunction('Screen: ResetPassword');
+  }, []);
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');

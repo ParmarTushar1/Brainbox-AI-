@@ -14,9 +14,15 @@ import Phone from '../assets/images/Svg/Phone.svg';
 import CheckIcon from '../assets/images/Svg/check-symbol-4794.svg';
 import PrimaryButton from '../components/PrimaryButton';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const PhoneNumber = () => {
   const navigation = useNavigation();
+
+  React.useEffect(() => {
+    logFunction('Screen: PhoneNumber');
+  }, []);
+
   const [phone, setPhone] = useState('');
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);

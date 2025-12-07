@@ -9,12 +9,17 @@ import { wp } from '../utils/responsive';
 import BrainboxBottomsheet from '../components/BrainboxBottomsheet';
 import PrimaryButton from '../components/PrimaryButton';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const OtpVerify = () => {
   const [sheetVisible, setSheetVisible] = useState(false);
   const [otp, setOtp] = useState('');
   const [timer, setTimer] = useState(60);
   const navigation = useNavigation();
+
+  useEffect(() => {
+    logFunction('Screen: OtpVerify');
+  }, []);
 
   const handleBackPress = () => {
     navigation.goBack();

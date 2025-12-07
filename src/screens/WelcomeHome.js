@@ -6,6 +6,7 @@ import BrainboxContainer from '../components/BrainboxContainer';
 import Logo from '../assets/images/Svg/Logo.svg';
 import PrimaryButton from '../components/PrimaryButton';
 import commonStyles from '../utils/commonStyles';
+import { logFunction } from '../utils/commonFunctions';
 
 const WelcomeHome = () => {
   const navigation = useNavigation();
@@ -13,6 +14,7 @@ const WelcomeHome = () => {
   // Disable back button
   useFocusEffect(
     useCallback(() => {
+      logFunction('Screen: WelcomeHome');
       const onBackPress = () => true;
       BackHandler.addEventListener('hardwareBackPress', onBackPress);
       return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress);
